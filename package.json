@@ -1,6 +1,7 @@
 {
   "name": "redux-trees",
   "version": "0.0.1",
+  "description": "Alternative way to compose Redux reducers",
   "author": "Alex Fedoseev <alex.fedoseev@gmail.com> (https://github.com/alexfedoseev)",
   "license": "MIT",
   "main": "lib/index.js",
