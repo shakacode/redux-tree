@@ -4,7 +4,7 @@
 [![dependencies status](https://img.shields.io/gemnasium/shakacode/redux-tree.svg?style=flat-square)](https://gemnasium.com/shakacode/redux-tree)
 [![license](https://img.shields.io/npm/l/redux-tree.svg?style=flat-square)](https://www.npmjs.com/package/redux-tree)
 
-Alternative way to compose Redux reducers.
+An alternative way to compose Redux reducers.
 
 
 ## State as a Tree
@@ -70,7 +70,7 @@ POST_DELETE_SUCCEEDED: [
 ]
 ```
 
-To make this code work, few changes required in how Redux iterates over the reducers. Instead of tightly couple each reducer to the single leaf, let’s let the leaf decide which part(s) of the state will be updated in the response to the action. This is what `redux-tree` does.
+To make this code work, few internal changes are required in how Redux iterates over the reducers. Instead of tightly couple each reducer to the single leaf, let’s let the leaf decide which part(s) of the state will be updated in the response to the action. This is what `redux-tree` does.
 
 ---
 
@@ -198,6 +198,10 @@ Action handlers are stored in an object. Its keys are action types, and values a
 }
 ```
 
+
+## Thanks
+
+To [Alberto Leal](https://albertoleal.ca/) for handing over the `redux-tree` NPM package name.
 
 ## License
 It's MIT.
