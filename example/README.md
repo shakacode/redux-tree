@@ -1,4 +1,4 @@
-# redux-trees-example
+# redux-tree-example
 
 ```shell
 yarn start

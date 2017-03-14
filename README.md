@@ -1,8 +1,8 @@
-# redux-trees
+# redux-tree
 
-[![npm version](https://img.shields.io/npm/v/redux-trees.svg?style=flat-square)](https://www.npmjs.com/package/redux-trees)
-[![dependencies status](https://img.shields.io/gemnasium/shakacode/redux-trees.svg?style=flat-square)](https://gemnasium.com/shakacode/redux-trees)
-[![license](https://img.shields.io/npm/l/redux-trees.svg?style=flat-square)](https://www.npmjs.com/package/redux-trees)
+[![npm version](https://img.shields.io/npm/v/redux-tree.svg?style=flat-square)](https://www.npmjs.com/package/redux-tree)
+[![dependencies status](https://img.shields.io/gemnasium/shakacode/redux-tree.svg?style=flat-square)](https://gemnasium.com/shakacode/redux-tree)
+[![license](https://img.shields.io/npm/l/redux-tree.svg?style=flat-square)](https://www.npmjs.com/package/redux-tree)
 
 Alternative way to compose Redux reducers.
 
@@ -62,12 +62,12 @@ POST_DELETE_SUCCEEDED: [
 ]
 ```
 
-To make this code work, few changes required in how Redux iterates over the reducers. Instead of tightly couple each reducer to the single leaf, let’s let the leaf decide which part(s) of state will be updated in the response to the action. This is what `redux-trees` does.
+To make this code work, few changes required in how Redux iterates over the reducers. Instead of tightly couple each reducer to the single leaf, let’s let the leaf decide which part(s) of state will be updated in the response to the action. This is what `redux-tree` does.
 
 ## Implementation details
-`redux-trees` is an alternative version of Redux's `combineReducers` method. It allows declaring the changes in the state, caused by the action, as a sequence of functions.
+`redux-tree` is an alternative version of Redux's `combineReducers` method. It allows declaring the changes in the state, caused by the action, as a sequence of functions.
 
-`redux-trees` represents the state as an Immutable `Record` to handle deep updates and to prevent state mutations. [`immutable-js`](http://facebook.github.io/immutable-js/) is required.
+`redux-tree` represents the state as an Immutable `Record` to handle deep updates and to prevent state mutations. [`immutable-js`](http://facebook.github.io/immutable-js/) is required.
 
 Packages from Redux eco system should be compatible with it as the only change it introduces is how Redux _internally_ iterates over the reducers.
 
@@ -75,8 +75,8 @@ Packages from Redux eco system should be compatible with it as the only change i
 
 ```shell
 # yarn / npm
-yarn add redux-trees
-npm install --save redux-trees
+yarn add redux-tree
+npm install --save redux-tree
 
 # don't forget to install redux & immutable
 yarn add redux immutable
@@ -85,12 +85,12 @@ npm install --save redux immutable
 
 ## Example
 
-[Sources](./example/src/app) &middot; [Live](http://redux-trees.surge.sh)
+[Sources](./example/src/app) &middot; [Live](http://redux-tree.surge.sh)
 
 Check out [this medium post](https://blog.shakacode.com/a-year-of-development-with-redux-part-iii-7a0e9a7d7670) on structuring of the Redux app. This library is a direct continuation of the ideas I stated there as it lets declare interactions in even more concise manner.
 
 ## Usage
-`redux-trees` exposes 3 modules:
+`redux-tree` exposes 3 modules:
 
 ### `createTree`
 
