@@ -1,6 +1,6 @@
 {
   "name": "redux-tree",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Alternative way to compose Redux reducers",
   "author": "Alex Fedoseev <alex.fedoseev@gmail.com> (https://github.com/alexfedoseev)",
   "license": "MIT",
