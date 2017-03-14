@@ -6,8 +6,9 @@
 
 Alternative way to compose Redux reducers.
 
+
 ## State as a Tree
-Application state is a `tree`. It can be described as a combination of `branches` and `leaves`. Branch doesn't hold any state itself, but groups the leaves. Each leaf holds the part of the application state. E.g., branch `state.entities` holds the state of `posts` leaf, `comments` leaf etc.
+Application state can be represented as a `tree`, which is a combination of `branches` and `leaves`. Branch doesn't hold any state itself, but groups the leaves. Each leaf holds the part of the application state.
 
 ```
 state:
@@ -15,36 +16,43 @@ state:
     posts: { index, entities }
     comments: { entities }
   ui:
-    postsList: { processingPosts: Array<Id> }
-    postView: { ... }
+    postsList: { processingPosts }
+    ...
 ```
+_E.g., branch `state.entities` holds the state of `posts` leaf, `comments` leaf etc._
 
-When user interacts with UI -> application changes its state. Let's say user manages his posts and removes one of them by clicking the "Delete" button. What's happening under the hood: app starts request to the server and adds `postId` to the `processingPosts` set to show the spinner in the UI. It requires a change in the single `postsList` leaf of the state tree:
+When user interacts with UI, application changes its state. Let's say user manages his posts and removes one of them by clicking the "Delete" button.
+
+What's happening under the hood. The state of this UI part is stored in the `state.ui.postsList` leaf. Clicking on the button, user triggers action creator and app starts request to the server. On this action `postId` is added to the `processingPosts` set to show the spinner in the UI. It requires a change in the single `ui.postsList` leaf:
 
 ```js
-// Request action dispatch
+// Action creator: dispatching request action
 dispatch({
   type: 'POST_DELETE_REQUESTED',
   postId,
 })
 
-// Action handler: reduces the state of the single leaf
+// Action handler: reducing the state of the single leaf
 POST_DELETE_REQUESTED:
   (state, { postId }) =>
     state.update('processingPosts', processingPosts => processingPosts.add(postId))
 ```
 
-When server responds with the success, `postId` must be removed from the `processingPosts` set and post entity must be removed from the `entities.posts` leaf. This action requires the changes of the 2 different leaves:
+When server responds with the success:
+* `postId` must be removed from the `processingPosts` set
+* post entity must be removed from the `entities.posts` leaf.
+
+This action requires the changes of the 2 different leaves:
 
 ```js
-// Success action dispatch
+// Action creator: dispatching success action
 dispatch({
   type: 'POST_DELETE_SUCCEEDED',
   postId,
 })
 
-// Passing array of handlers for this action type
-// to define sequence of the changes in the state tree
+// Action handlers: passing array of the reducers for this action type
+//                  to apply sequence of the changes in the state tree
 POST_DELETE_SUCCEEDED: [
   // 1. hiding spinner
   (state, { postId }) =>
@@ -62,14 +70,18 @@ POST_DELETE_SUCCEEDED: [
 ]
 ```
 
-To make this code work, few changes required in how Redux iterates over the reducers. Instead of tightly couple each reducer to the single leaf, let’s let the leaf decide which part(s) of state will be updated in the response to the action. This is what `redux-tree` does.
+To make this code work, few changes required in how Redux iterates over the reducers. Instead of tightly couple each reducer to the single leaf, let’s let the leaf decide which part(s) of the state will be updated in the response to the action. This is what `redux-tree` does.
 
-## Implementation details
-`redux-tree` is an alternative version of Redux's `combineReducers` method. It allows declaring the changes in the state, caused by the action, as a sequence of functions.
+---
 
-`redux-tree` represents the state as an Immutable `Record` to handle deep updates and to prevent state mutations. [`immutable-js`](http://facebook.github.io/immutable-js/) is required.
+`redux-tree` is a direct continuation of the ideas I stated in [this medium post](https://blog.shakacode.com/a-year-of-development-with-redux-part-iii-7a0e9a7d7670) as it allows declaring `interactions` in even more concise manner.
 
-Packages from Redux eco system should be compatible with it as the only change it introduces is how Redux _internally_ iterates over the reducers.
+Under the hood, it is an alternative version of Redux's `combineReducers` method, which makes possible to represent the changes in the state, caused by the action, as a sequence of functions.
+
+It's super easy to integrate `redux-tree` into existing codebase as it supports classic reducers and should be compatible with the most of the packages from Redux ecosystem as the main change it introduces is how Redux _internally_ iterates over the reducers.
+
+`redux-tree` represents the state as an Immutable `Record` to handle deep updates, prevent state mutations, preserve access to the state items using dot notation and strongly type state tree with the `flow`. [`immutable-js`](http://facebook.github.io/immutable-js/) is required.
+
 
 ## Installation
 
@@ -84,17 +96,18 @@ npm install --save redux immutable
 ```
 
 ## Example
-
 [Sources](./example/src/app) &middot; [Live](http://redux-tree.surge.sh)
 
-Check out [this medium post](https://blog.shakacode.com/a-year-of-development-with-redux-part-iii-7a0e9a7d7670) on structuring of the Redux app. This library is a direct continuation of the ideas I stated there as it lets declare interactions in even more concise manner.
 
-## Usage
+## API
 `redux-tree` exposes 3 modules:
+
 
 ### `createTree`
 
 ```js
+import { createTree } from 'redux-tree';
+
 const tree = createTree({
   auth: authLeaf,
   entities: entitiesBranch,
@@ -110,9 +123,12 @@ const store = createStore(tree, initialState, enhancers);
 
 `createTree` receives 1 argument: object with branches and/or leaves. Returns a `tree`, in fact this is a root reducer.
 
+
 ### `createBranch`
 
 ```js
+import { createBranch } from 'redux-tree';
+
 const branch = createBranch({
   posts: postsLeaf,
   comments: commentsLeaf,
@@ -123,9 +139,12 @@ type CreateBranch = ({ [key: string]: Branch | Leaf }) => Branch;
 
 `createBranch` also receives 1 argument: object with branches and/or leaves. You don't need this method if your state tree is 1 level deep. Returns a `branch`.
 
+
 ### `createLeaf`
 
 ```js
+import { createLeaf } from 'redux-tree';
+
 const leaf = createLeaf(initialState, actionHandlers);
 const leaf = createLeaf(reducer);
 
@@ -139,6 +158,7 @@ You can pass 2 types of arguments to `createLeaf`:
 
 1. Single argument: classic reducer function, which takes state of the leaf and action and returns next leaf state.
 2. Two arguments: initial state of the leaf and object with action handlers.
+
 
 #### Action handlers
 
@@ -177,6 +197,7 @@ Action handlers are stored in an object. Its keys are action types, and values a
   ],
 }
 ```
+
 
 ## License
 It's MIT.

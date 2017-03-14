@@ -11,6 +11,13 @@
     "build": "rollup --config",
     "preversion": "yarn run lint && yarn run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shakacode/redux-tree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shakacode/redux-tree/issues"
+  },
   "files": [
     "lib"
   ],
