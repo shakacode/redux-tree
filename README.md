@@ -1,6 +1,7 @@
 # redux-tree
 
 [![npm version](https://img.shields.io/npm/v/redux-tree.svg?style=flat-square)](https://www.npmjs.com/package/redux-tree)
+[![build status](https://img.shields.io/travis/shakacode/redux-tree/master.svg?style=flat-square)](https://travis-ci.org/shakacode/redux-tree)
 [![dependencies status](https://img.shields.io/gemnasium/shakacode/redux-tree.svg?style=flat-square)](https://gemnasium.com/shakacode/redux-tree)
 [![license](https://img.shields.io/npm/l/redux-tree.svg?style=flat-square)](https://www.npmjs.com/package/redux-tree)
 
