@@ -8,8 +8,10 @@
   "scripts": {
     "start": "rollup --config --watch",
     "lint": "eslint .",
+    "test": "jest --testPathPattern=.*\\.spec\\.js$",
+    "validate": "yarn run lint && yarn run test",
     "build": "rollup --config",
-    "preversion": "yarn run lint && yarn run build"
+    "preversion": "yarn run validate && yarn run build"
   },
   "repository": {
     "type": "git",
@@ -22,12 +24,15 @@
     "lib"
   ],
   "devDependencies": {
+    "babel-jest": "19.0.0",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-preset-env": "1.2.1",
     "eslint": "3.17.1",
     "eslint-config-shakacode": "14.1.1",
     "eslint-plugin-import": "2.2.0",
     "immutable": "4.0.0-rc.1",
+    "jest": "19.0.2",
+    "redux": "3.6.0",
     "rollup": "0.41.5",
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-node-resolve": "2.0.0",

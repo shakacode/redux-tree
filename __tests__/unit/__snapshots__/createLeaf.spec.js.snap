@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createLeaf throws on invalid reducers 1`] = `
+"
+      Invalid action handlers are passed to \\"createLeaf\\" function.
+
+      Received:
+        arg #1: {\\"initial\\":\\"state\\"}
+        arg #2: []
+
+      
+    Provide action handlers to the \\"createLeaf\\" function in one of the following ways:
+
+    Option #1:
+      { ACTION_TYPE: (state, action) => state }
+
+    Option #2:
+      {
+        ACTION_TYPE: {
+          leaf: ['path', 'to', 'leaf'],
+          reduce: (state, action) => state,
+        },
+      }
+
+    Option #3:
+      {
+        ACTION_TYPE: [
+          (state, action) => state,
+
+          {
+            leaf: ['path', 'to', 'leaf'],
+            reduce: (state, action) => state,
+          },
+        ],
+      }
+
+    "
+`;
+
+exports[`createLeaf throws on missing initial state 1`] = `
+"
+      \\"createLeaf\\" recieved undefined on initialisation.
+      The initial state may not be undefined.
+      If you don't want to set a value for this reducer,
+      you can use null instead of undefined.
+    "
+`;

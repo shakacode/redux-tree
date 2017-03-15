@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@@INIT 1`] = `
+Object {
+  "leaf": 0,
+}
+`;
+
+exports[`INCREMENT 1`] = `
+Object {
+  "leaf": 1,
+}
+`;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`redux-tree throws on invalid action handler 1`] = `
+"
+    Invalid action handler is passed for \\"action.INVALID_ACTION_HANDLER\\".
+
+    Received:
+      Action: {\\"type\\":\\"INVALID_ACTION_HANDLER\\"}
+      Action handler: \\"invalid handler\\"
+
+    
+    Provide action handlers to the \\"createLeaf\\" function in one of the following ways:
+
+    Option #1:
+      { ACTION_TYPE: (state, action) => state }
+
+    Option #2:
+      {
+        ACTION_TYPE: {
+          leaf: ['path', 'to', 'leaf'],
+          reduce: (state, action) => state,
+        },
+      }
+
+    Option #3:
+      {
+        ACTION_TYPE: [
+          (state, action) => state,
+
+          {
+            leaf: ['path', 'to', 'leaf'],
+            reduce: (state, action) => state,
+          },
+        ],
+      }
+
+  "
+`;
