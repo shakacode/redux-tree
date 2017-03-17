@@ -5,8 +5,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "yarn run build && cp CNAME build/",
-    "deploy": "surge build/",
+    "predeploy": "yarn run build",
+    "deploy": "now deploy build",
     "eject": "react-scripts eject"
   },
   "dependencies": {

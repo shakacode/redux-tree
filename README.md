@@ -97,7 +97,7 @@ npm install --save redux immutable
 ```
 
 ## Example
-[Sources](./example/src/app) &middot; [Live](http://redux-tree.surge.sh)
+[Sources](./example/src/app) &middot; [Live](https://redux-tree.now.sh)
 
 
 ## API
