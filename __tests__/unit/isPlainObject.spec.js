@@ -1,5 +1,3 @@
-/* @flow */
-
 import { isPlainObject } from '../../src/utils';
 
 describe('utils.isPlainObject()', () => {
