@@ -30,7 +30,7 @@
     "eslint": "3.17.1",
     "eslint-config-shakacode": "14.1.1",
     "eslint-plugin-import": "2.2.0",
-    "immutable": "4.0.0-rc.1",
+    "immutable": "4.0.0-rc.2",
     "jest": "19.0.2",
     "redux": "3.6.0",
     "rollup": "0.41.5",
