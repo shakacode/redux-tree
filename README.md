@@ -96,13 +96,37 @@ yarn add redux immutable
 npm install --save redux immutable
 ```
 
-## Example
-[Sources](./example/src/app) &middot; [Live](https://redux-tree.now.sh)
+## Examples
+
+Counter:
+
+```js
+import { createStore } from 'redux';
+import { createTree, createLeaf } from 'redux-tree';
+
+const tree = createTree({
+  counter: createLeaf(0, {
+    INCREMENT: state => state + 1,
+    DECREMENT: state => state - 1,
+  }),
+});
+
+const store = createStore(tree);
+
+store.subscribe(() => console.log(store.getState()));
+
+store.dispatch({ type: 'INCREMENT' }); // => { counter: 1 }
+store.dispatch({ type: 'INCREMENT' }); // => { counter: 2 }
+store.dispatch({ type: 'DECREMENT' }); // => { counter: 1 }
+```
+
+Advanced: [Sources](./example/src/app) &middot; [Live](https://redux-tree.now.sh)
+
+See more examples (incl. usage w/ `flow`) in [`redux-interactions`](https://github.com/shakacode/redux-interactions) repo.
 
 
 ## API
 `redux-tree` exposes 3 modules:
-
 
 ### `createTree`
 
@@ -201,7 +225,6 @@ Action handlers are stored in an object. Its keys are action types, and values a
 
 
 ## Thanks
-
 To [Alberto Leal](https://albertoleal.ca/) for handing over the `redux-tree` NPM package name.
 
 ## License
