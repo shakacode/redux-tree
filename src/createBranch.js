@@ -1,6 +1,7 @@
 import { Record } from 'immutable';
 
 import { createShell } from './utils';
+import * as messages from './messages';
 
 export const createBranch = children => {
   const childrenNames = Object.keys(children);
@@ -13,8 +14,16 @@ export const createBranch = children => {
     }
 
     return state.withMutations(nextState => {
-      if (!initialized && !Record.isRecord(nextState.getIn(keyPath))) {
-        nextState.setIn(keyPath, createShell(childrenNames));
+      if (!initialized) {
+        const branchState = nextState.getIn(keyPath);
+
+        if (!branchState) {
+          nextState.setIn(keyPath, createShell(childrenNames));
+        // Record.isRecord method is available only in immutable@4.x
+        // For now skipping this check if older version is used
+        } else if (Record.isRecord && !Record.isRecord(branchState)) {
+          throw new Error(messages.nonRecordState(branchState));
+        }
       }
 
       childrenNames.forEach(child => {

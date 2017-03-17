@@ -25,6 +25,13 @@ export const REDUCERS_EXAMPLES = `
       }
 `;
 
+
+export const nonRecordState = state => {
+  const stringifiedState = JSON.stringify(state);
+  return `State must be Immutable Record. Received: ${stringifiedState}`;
+};
+
+
 export const undefinedState = (keyPath, action) => {
   const stringifiedKeyPath = JSON.stringify(keyPath);
   const stringifiedAction = JSON.stringify(action);
@@ -38,6 +45,7 @@ export const undefinedState = (keyPath, action) => {
     Action: ${stringifiedAction}
   `);
 };
+
 
 export const badKeyPath = (keyPath, action) => {
   const stringifiedKeyPath = JSON.stringify(keyPath);
@@ -53,6 +61,7 @@ export const badKeyPath = (keyPath, action) => {
     Action: ${stringifiedAction}
   `);
 };
+
 
 export const badActionHandler = (actionHandler, action) => {
   const stringifiedActionHandler = JSON.stringify(actionHandler);

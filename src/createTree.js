@@ -1,6 +1,7 @@
 import { Record } from 'immutable';
 
 import { createShell } from './utils';
+import * as messages from './messages';
 
 export const createTree = children => {
   const childrenNames = Object.keys(children);
@@ -8,10 +9,10 @@ export const createTree = children => {
   let initialized = false;
 
   return (state = createShell(childrenNames), action) => {
-    if (state && !Record.isRecord(state)) {
-      throw new Error(
-        `State must be Immutable Record. Received: ${JSON.stringify(state)}`,
-      );
+    // Record.isRecord method is available only in immutable@4.x
+    // For now skipping this check if older version is used
+    if (state && Record.isRecord && !Record.isRecord(state)) {
+      throw new Error(messages.nonRecordState(state));
     }
 
     return state.withMutations(nextState => {
