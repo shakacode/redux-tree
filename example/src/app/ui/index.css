@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  font-family: Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}

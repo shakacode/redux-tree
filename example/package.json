@@ -1,0 +1,28 @@
+{
+  "name": "redux-tree-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "yarn run build",
+    "deploy": "now deploy build",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "immutable": "^4.0.0-rc.1",
+    "normalizr": "^3.2.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^2.5.4"
+  },
+  "devDependencies": {
+    "react-scripts": "^0.9.5",
+    "redux-devtools": "3.3.2",
+    "redux-devtools-dock-monitor": "1.1.1",
+    "redux-devtools-log-monitor": "1.2.0"
+  }
+}

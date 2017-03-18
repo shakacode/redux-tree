@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@@INIT 1`] = `
+Object {
+  "entities": Object {
+    "entityLeaf": Object {
+      "index": Array [
+        1,
+        2,
+        3,
+      ],
+    },
+  },
+  "ui": Object {
+    "uiLeaf": Object {
+      "processingEntities": Array [],
+    },
+  },
+}
+`;
+
+exports[`REMOVE_ENTITY 1`] = `
+Object {
+  "entities": Object {
+    "entityLeaf": Object {
+      "index": Array [
+        3,
+        2,
+      ],
+    },
+  },
+  "ui": Object {
+    "uiLeaf": Object {
+      "processingEntities": Array [],
+    },
+  },
+}
+`;
+
+exports[`redux-tree throws on invalid keypath 1`] = `
+"
+    \\"action.INVALID_KEYPATH\\" was dispatched.
+    Trying to update state at keypath [\\"entities\\",\\"invalidLeaf\\"] but resolved value is undefined.
+    Most likely you misspelled one of the keys in the leaf keypath.
+    Re-check your action handlers for this action.
+
+    Keypath: [\\"entities\\",\\"invalidLeaf\\"]
+    Action: {\\"type\\":\\"INVALID_KEYPATH\\"}
+  "
+`;
+
+exports[`redux-tree throws on undefined state returned form action handler as an object 1`] = `
+"
+    Reducer at keypath [\\"entities\\",\\"entityLeaf\\"] returned undefined.
+    To ignore an action, you must explicitly return the previous state.
+    If you want this reducer to hold no value, you can return null instead of undefined.
+
+    Keypath: [\\"entities\\",\\"entityLeaf\\"]
+    Action: {\\"type\\":\\"UNDEFINED_STATE\\"}
+  "
+`;

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@@INIT 1`] = `
+Object {
+  "entities": Object {
+    "entityLeaf": Object {
+      "index": Array [],
+    },
+  },
+  "ui": Object {
+    "uiLeaf": Object {
+      "processingEntities": Set {},
+    },
+  },
+}
+`;
+
+exports[`@@INIT 2`] = `
+Object {
+  "entities": Object {
+    "entityLeaf": Object {
+      "index": Array [
+        1,
+        2,
+        3,
+      ],
+    },
+  },
+  "ui": Object {
+    "uiLeaf": Object {
+      "processingEntities": Array [],
+    },
+  },
+}
+`;

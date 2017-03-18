@@ -1,0 +1,51 @@
+{
+  "name": "redux-tree",
+  "version": "0.3.2",
+  "description": "An alternative way to compose Redux reducers",
+  "author": "Alex Fedoseev <alex.fedoseev@gmail.com> (https://github.com/alexfedoseev)",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "rollup --config --watch",
+    "lint": "eslint .",
+    "test": "jest --testPathPattern=.*\\.spec\\.js$",
+    "validate": "yarn run lint && yarn run test",
+    "build": "rollup --config",
+    "preversion": "yarn run validate && yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shakacode/redux-tree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shakacode/redux-tree/issues"
+  },
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "babel-jest": "19.0.0",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-preset-env": "1.2.1",
+    "eslint": "3.17.1",
+    "eslint-config-shakacode": "14.1.1",
+    "eslint-plugin-import": "2.2.0",
+    "immutable": "4.0.0-rc.2",
+    "jest": "19.0.2",
+    "redux": "3.6.0",
+    "rollup": "0.41.5",
+    "rollup-plugin-babel": "2.7.1",
+    "rollup-plugin-node-resolve": "2.0.0",
+    "rollup-watch": "3.2.2"
+  },
+  "peerDependencies": {
+    "immutable": "^3.0.0 || ^4.0.0-rc.1",
+    "redux": "^2.0.0 || ^3.0.0"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "flux",
+    "state"
+  ]
+}

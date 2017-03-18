@@ -1,0 +1,9 @@
+---
+extends: "eslint-config-shakacode/base"
+
+env:
+  jest: true
+
+rules:
+  consistent-return: "off"
+  import/prefer-default-export: "off"
