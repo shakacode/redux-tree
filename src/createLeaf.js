@@ -1,4 +1,4 @@
-import { isPlainObject } from './utils';
+import { isReduxAction, isPlainObject } from './utils';
 import * as messages from './messages';
 
 export const createLeaf = (initialState, reducers) => {
@@ -27,7 +27,7 @@ export const createLeaf = (initialState, reducers) => {
     // TODO: Validate reducers shape.
   }
 
-  return (state, action, keyPath, initialized) => {
+  return (state, action, keyPath) => {
     const leafKeyPath = Array.isArray(keyPath) ? keyPath : [keyPath];
     const leafState = state.getIn(leafKeyPath);
 
@@ -42,9 +42,9 @@ export const createLeaf = (initialState, reducers) => {
         return nextState.setIn(leafKeyPath, nextLeafState);
       }
 
-      // On initialization
-      if (!initialized) {
-        // Do nothing if state is rehydrated
+      // On redux action
+      if (isReduxAction(action.type)) {
+        // Do nothing if state exists (i.e. rehydrated)
         if (typeof leafState !== 'undefined') return;
         // Otherwise set initial state
         return nextState.setIn(leafKeyPath, initialState);

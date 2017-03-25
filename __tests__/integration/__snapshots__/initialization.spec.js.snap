@@ -9,13 +9,13 @@ Object {
   },
   "ui": Object {
     "uiLeaf": Object {
-      "processingEntities": Set {},
+      "processingEntities": Array [],
     },
   },
 }
 `;
 
-exports[`@@INIT 2`] = `
+exports[`@@INIT_WITH_STATE 1`] = `
 Object {
   "entities": Object {
     "entityLeaf": Object {

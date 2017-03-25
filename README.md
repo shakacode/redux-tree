@@ -193,7 +193,6 @@ type CreateLeaf =
 
 
 #### Action handlers
-
 Action handlers are stored in an object. Its keys are action types, and values are action handlers (reducers). You can define reducers in the following ways:
 
 **As a function**. It receives the state of the leaf to which it was initially passed and dispatched action. Must return a state of the leaf.
@@ -251,6 +250,23 @@ function counterReducer(state = 0, action) {
 export default createLeaf(counterReducer);
 ```
 
+### Usage with `combineReducers`
+It is possible to define `tree` as a child of vanilla reducer, created with `combineReducers`.
+
+```js
+const rootReducer = combineReducers({
+  vanillaReducers: combineReducers({
+    vanillaReducer: (state, action) => state,
+  }),
+  tree: createTree({
+    entities: createBranch({
+      posts: createLeaf(initialState, actionHandlers),
+    }),
+  }),
+});
+```
+
+Keep in mind that `tree` doesn't know anything about parents, and in action handler you can't change a state of an external leaf at keypath outside of the tree. All keypaths must be provided relative to the tree's root node. Basically, keypaths must be the same as if child tree would be a root reducer. _But you still can respond to any action in any reducer in case you need this._
 
 ## Thanks
 To [Alberto Leal](https://albertoleal.ca/) for handing over the `redux-tree` NPM package name.

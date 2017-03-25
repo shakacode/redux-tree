@@ -1,6 +1,6 @@
 import { Record } from 'immutable';
 
-import { createShell } from './utils';
+import { createShell, isReduxAction } from './utils';
 import * as messages from './messages';
 
 export const createBranch = children => {
@@ -8,13 +8,13 @@ export const createBranch = children => {
 
   let keyPath;
 
-  return (state, action, parentKeyPath, initialized) => {
+  return (state, action, parentKeyPath) => {
     if (!keyPath) {
       keyPath = [].concat(parentKeyPath);
     }
 
     return state.withMutations(nextState => {
-      if (!initialized) {
+      if (isReduxAction(action.type)) {
         const branchState = nextState.getIn(keyPath);
 
         if (!branchState) {
@@ -29,7 +29,7 @@ export const createBranch = children => {
       childrenNames.forEach(child => {
         const childKeyPath = keyPath.concat(child);
         // eslint-disable-next-line no-param-reassign
-        nextState = children[child](nextState, action, childKeyPath, initialized);
+        nextState = children[child](nextState, action, childKeyPath);
       });
     });
   };

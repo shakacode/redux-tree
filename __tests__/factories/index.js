@@ -1,4 +1,4 @@
-import { Record } from 'immutable';
+import { Record, Set } from 'immutable';
 
 import { createTree, createBranch } from '../../src';
 

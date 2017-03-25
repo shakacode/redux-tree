@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@@INIT 1`] = `
+Object {
+  "counter": 0,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [],
+      },
+    },
+  },
+}
+`;
+
+exports[`@@INIT_TREE 1`] = `
+Object {
+  "counter": 0,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [],
+      },
+    },
+  },
+}
+`;
+
+exports[`@@INIT_WITH_STATE 1`] = `
+Object {
+  "counter": 42,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [
+          1,
+          2,
+          3,
+        ],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [],
+      },
+    },
+  },
+}
+`;
+
+exports[`ADD_ENTITY_TO_TREE 1`] = `
+Object {
+  "counter": 0,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [
+          1,
+        ],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [],
+      },
+    },
+  },
+}
+`;
+
+exports[`INCREMENT_VANILLA_COUNTER 1`] = `
+Object {
+  "counter": 1,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [],
+      },
+    },
+  },
+}
+`;
+
+exports[`START_PROCESSING_TREE_ENTITY 1`] = `
+Object {
+  "counter": 0,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [
+          1,
+        ],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [
+          1,
+        ],
+      },
+    },
+  },
+}
+`;
+
+exports[`STOP_PROCESSING_TREE_ENTITY 1`] = `
+Object {
+  "counter": 0,
+  "tree": Object {
+    "entities": Object {
+      "entityLeaf": Object {
+        "index": Array [],
+      },
+    },
+    "ui": Object {
+      "uiLeaf": Object {
+        "processingEntities": Array [],
+      },
+    },
+  },
+}
+`;
