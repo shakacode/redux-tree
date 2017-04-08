@@ -1,10 +1,7 @@
 language: node_js
 
 node_js:
-  - 4
-  - 5
-  - 6
-  - 7
+  - "node"
 
 script:
   - yarn run validate
@@ -13,3 +10,6 @@ script:
 branches:
   only:
     - master
+
+cache:
+  yarn: true
