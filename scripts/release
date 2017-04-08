@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rm -rf node_modules && \
+yarn && \
+$(yarn global bin)/np \
+  --no-cleanup \
+  --tag=$1
