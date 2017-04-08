@@ -4,14 +4,22 @@
   "description": "An alternative way to compose Redux reducers",
   "author": "Alex Fedoseev <alex.fedoseev@gmail.com> (https://github.com/alexfedoseev)",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "lib/redux-tree.cjs.js",
+  "module": "lib/redux-tree.es.js",
   "scripts": {
-    "start": "rollup --config --watch",
+    "start": "yarn run clean && yarn run dev",
+    "dev": "BABEL_ENV=build BUILD_TARGET=cjs rollup --config --watch",
+    "build": "yarn run clean && yarn run build:es && yarn run build:cjs && yarn run build:umd",
+    "build:es": "BABEL_ENV=build BUILD_TARGET=es rollup --config",
+    "build:cjs": "BABEL_ENV=build BUILD_TARGET=cjs rollup --config",
+    "build:umd": "BABEL_ENV=build BUILD_TARGET=umd rollup --config",
     "lint": "eslint .",
-    "test": "jest --testPathPattern=.*\\.spec\\.js$",
+    "test": "BABEL_ENV=test jest --testPathPattern=.*\\.spec\\.js$",
     "validate": "yarn run lint && yarn run test",
-    "build": "rollup --config",
-    "preversion": "yarn run validate && yarn run build"
+    "clean": "rm -rf lib",
+    "preversion": "yarn run validate && yarn run build",
+    "release": "scripts/release latest",
+    "release:next": "scripts/release next"
   },
   "repository": {
     "type": "git",
@@ -23,6 +31,10 @@
   "files": [
     "lib"
   ],
+  "peerDependencies": {
+    "immutable": "^3.0.0 || ^4.0.0-rc.1",
+    "redux": "^2.0.0 || ^3.0.0"
+  },
   "devDependencies": {
     "babel-jest": "19.0.0",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
@@ -33,14 +45,10 @@
     "immutable": "4.0.0-rc.2",
     "jest": "19.0.2",
     "redux": "3.6.0",
-    "rollup": "0.41.5",
+    "rollup": "0.41.6",
     "rollup-plugin-babel": "2.7.1",
-    "rollup-plugin-node-resolve": "2.0.0",
+    "rollup-plugin-node-resolve": "3.0.0",
     "rollup-watch": "3.2.2"
-  },
-  "peerDependencies": {
-    "immutable": "^3.0.0 || ^4.0.0-rc.1",
-    "redux": "^2.0.0 || ^3.0.0"
   },
   "keywords": [
     "react",

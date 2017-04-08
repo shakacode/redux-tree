@@ -1,4 +1,4 @@
-import { createTree } from '../../../lib';
+import { createTree } from '../../../lib/redux-tree.cjs';
 
 /**
  * @desc Creating the Tree. Tree is a root reducer in fact.
