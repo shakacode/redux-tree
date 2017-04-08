@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
+    "prestart": "yarn run build:lib",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
-    "predeploy": "yarn run build",
+    "build:lib": "cd ../ && yarn run build",
+    "prebuild": "yarn run build:lib",
     "deploy": "now deploy build",
+    "predeploy": "yarn run build",
     "eject": "react-scripts eject"
   },
   "dependencies": {
