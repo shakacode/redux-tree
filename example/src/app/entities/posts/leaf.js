@@ -1,4 +1,4 @@
-import { createLeaf } from '../../../../../lib';
+import { createLeaf } from '../../../../../lib/redux-tree.cjs';
 
 /**
  * @desc `state.entities.posts` leaf.

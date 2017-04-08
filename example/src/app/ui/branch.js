@@ -1,4 +1,4 @@
-import { createBranch } from '../../../../lib';
+import { createBranch } from '../../../../lib/redux-tree.cjs';
 
 /**
  * @desc `state.ui` branch.
